@@ -5,6 +5,8 @@
   ],
   "extensions": [
     "golang.go",
-    "mikey.vscode-fileheader"
+    "mikey.vscode-fileheader",
+    "xaver.clang-format",
+    "zxh404.vscode-proto3"
   ]
 }

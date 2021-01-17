@@ -3,5 +3,4 @@ git:
 	git commit -m "$(msg)"
 	git push origin master
 
-
 .PHONY: git
