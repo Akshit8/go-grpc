@@ -13,6 +13,12 @@ sudo unzip -o $PROTOC_ZIP -d /usr/local 'include/*'
 rm -f $PROTOC_ZIP
 ```
 
+## Installing gRPC code generation libs for go
+```bash
+go get google.golang.org/grpc
+go get 
+```
+
 ## Makefile specs
 - **git** - git add - commit - push commands
 
