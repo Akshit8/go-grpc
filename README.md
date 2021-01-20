@@ -15,16 +15,23 @@ rm -f $PROTOC_ZIP
 
 ## Installing gRPC code generation libs for go
 ```bash
-go get google.golang.org/grpc
-go get 
+go get -u google.golang.org/grpc
+go get -u github.com/golang/protobuf/protoc-gen-go
+
+# generating codes
+protoc --proto_path=proto proto/*.proto --go_out=plugins=grpc:pb
 ```
 
 ## Makefile specs
 - **git** - git add - commit - push commands
-
+- **gen** - generate go code from proto file
+- **clean** - clean all generated code
+- **run** - run package main
 
 ## References
-[protobuf](https://github.com/protocolbuffers/protobuf)
+[protobuf](https://github.com/protocolbuffers/protobuf)<br>
+[protoc-linux-install](http://google.github.io/proto-lens/installing-protoc.html)<br>
+[proto-package-option](https://developers.google.com/protocol-buffers/docs/reference/go-generated#package)<br>
 
 ## Author
 **Akshit Sadana <akshitsadana@gmail.com>**
