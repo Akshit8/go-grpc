@@ -110,21 +110,21 @@ func NewLaptop() *pb.Laptop {
 	name := randomLaptopName(brand)
 
 	laptop := &pb.Laptop{
-		Id:     randomID(),
-		Brand: brand,
-		Name: name,
-		Cpu: NewCPU(),
-		Ram: NewRAM(),
-		Gpus: []*pb.GPU{NewGPU()},
+		Id:       randomID(),
+		Brand:    brand,
+		Name:     name,
+		Cpu:      NewCPU(),
+		Ram:      NewRAM(),
+		Gpus:     []*pb.GPU{NewGPU()},
 		Storages: []*pb.Storage{NewSSD(), NewHDD()},
-		Screen: NewScreen(),
+		Screen:   NewScreen(),
 		Keyboard: NewKeyboard(),
 		Weight: &pb.Laptop_WeightKg{
 			WeightKg: randomFloat64(1.0, 3.0),
 		},
-		PriceUsd: randomFloat64(1500, 3000),
+		PriceUsd:    randomFloat64(1500, 3000),
 		ReleaseYear: uint32(randomInt(2015, 2020)),
-		UpdatedAt: ptypes.TimestampNow(),
+		UpdatedAt:   ptypes.TimestampNow(),
 	}
 	return laptop
 }
