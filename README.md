@@ -3,7 +3,7 @@
 ## Install Protobuf compiler [protoc]
 ```bash
 # mac
-brew install prtobuf
+brew install protobuf
 
 # linux(usage with docker)
 PROTOC_ZIP=protoc-3.14.0.-linux-x86_64.zip
@@ -56,6 +56,7 @@ apt install clang-format
 [proto-package-option](https://developers.google.com/protocol-buffers/docs/reference/go-generated#package)<br>
 [grpc-io-go](https://grpc.io/docs/languages/go/quickstart/)<br>
 [protobuf-famous-types](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf)<br>
+[google-uuid](https://github.com/google/uuid)<br>
 
 ## Author
 **Akshit Sadana <akshitsadana@gmail.com>**
