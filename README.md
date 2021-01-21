@@ -54,6 +54,8 @@ apt install clang-format
 [protobuf](https://github.com/protocolbuffers/protobuf)<br>
 [protoc-linux-install](http://google.github.io/proto-lens/installing-protoc.html)<br>
 [proto-package-option](https://developers.google.com/protocol-buffers/docs/reference/go-generated#package)<br>
+[grpc-io-go](https://grpc.io/docs/languages/go/quickstart/)<br>
+[protobuf-famous-types](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf)<br>
 
 ## Author
 **Akshit Sadana <akshitsadana@gmail.com>**
