@@ -26,5 +26,17 @@
     "ui.diagnostic.staticcheck": true
   },
   "fileheader.Author": "Akshit Sadana (akshitsadana@gmail.com)",
-  "fileheader.tpl": "/*\r\n * @File: {file placeholder} \r\n * @Description: {file desc} \r\n * @LastModifiedTime: {updateTime} \r\n * @Author: {author} \r\n */\r\n"
+  "fileheader.tpl": "/*\r\n * @File: {file placeholder} \r\n * @Description: {file desc} \r\n * @LastModifiedTime: {updateTime} \r\n * @Author: {author} \r\n */\r\n",
+  "protoc": {
+    "path": "/usr/local/bin/protoc",
+    "compile_on_save": false,
+    "options": [
+      "--proto_path=protos"
+    ]
+  },
+  "clang-format.executable": "/usr/bin/clang-format",
+  "[proto3]": {
+    "editor.defaultFormatter": "xaver.clang-format",
+    "editor.formatOnSave": true
+  }
 }

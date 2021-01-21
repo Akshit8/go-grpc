@@ -22,6 +22,28 @@ go get -u github.com/golang/protobuf/protoc-gen-go
 protoc --proto_path=proto proto/*.proto --go_out=plugins=grpc:pb
 ```
 
+## IDE extension set for proto files
+```bash
+# configure proto path with pasting following settings
+"protoc": {
+  "path": "/usr/local/bin/protoc",
+  "compile_on_save": false,
+  "options": [
+    "--proto_path=protos"
+  ]
+}
+
+# instal clang-format for proto formatting(debian)
+apt install clang-format
+
+# ADD FOLLOWING SNIPPET FOR AUTO FORMATTING
+"clang-format.executable": "/usr/bin/clang-format",
+"[proto3]": {
+  "editor.defaultFormatter": "xaver.clang-format",
+  "editor.formatOnSave": true
+}
+```
+
 ## Makefile specs
 - **git** - git add - commit - push commands
 - **gen** - generate go code from proto file
