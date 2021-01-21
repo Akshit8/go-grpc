@@ -1,7 +1,10 @@
 // Package sample generated sample data
 package sample
 
-import "github.com/Akshit8/go-grpc/pb"
+import (
+	"github.com/Akshit8/go-grpc/pb"
+	"github.com/golang/protobuf/ptypes"
+)
 
 // NewKeyboard returns a new sample keyboard
 func NewKeyboard() *pb.Keyboard {
@@ -107,7 +110,7 @@ func NewLaptop() *pb.Laptop {
 	name := randomLaptopName(brand)
 
 	laptop := &pb.Laptop{
-		Id: randomID(),
+		Id:     randomID(),
 		Brand: brand,
 		Name: name,
 		Cpu: NewCPU(),
