@@ -7,6 +7,7 @@ import (
 
 	"github.com/Akshit8/go-grpc/pb"
 	"github.com/Akshit8/go-grpc/sample"
+	"github.com/Akshit8/go-grpc/serializer"
 	"github.com/stretchr/testify/require"
 	"google.golang.org/grpc"
 )
@@ -32,6 +33,9 @@ func TestClientCreateLaptop(t *testing.T) {
 	other, err := laptopServer.Store.Find(res.Id)
 	require.NoError(t, err)
 	require.NotNil(t, other)
+
+	// check that saved laptop is the same as the one we send
+	requireSameLaptop(t, laptop, other)
 }
 
 func startTestingLaptopServer(t *testing.T) (*LaptopServer, string) {
@@ -54,4 +58,14 @@ func newTestLaptopClient(t *testing.T, serverAddress string) pb.LaptopServiceCli
 	conn, err := grpc.Dial(serverAddress, grpc.WithInsecure())
 	require.NoError(t, err)
 	return pb.NewLaptopServiceClient(conn)
+}
+
+func requireSameLaptop(t *testing.T, laptop1 *pb.Laptop, laptop2 *pb.Laptop) {
+	json1, err := serializer.ProtobufToJSON(laptop1)
+	require.NoError(t, err)
+
+	json2, err := serializer.ProtobufToJSON(laptop2)
+	require.NoError(t, err)
+
+	require.Equal(t, json1, json2)
 }

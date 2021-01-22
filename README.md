@@ -48,7 +48,8 @@ apt install clang-format
 - **git** - git add - commit - push commands
 - **gen** - generate go code from proto file
 - **clean** - clean all generated code
-- **run** - run package main
+- **server** - run server main
+- **run** - run client main
 - **test** - run all package test with coverage
 
 ## References
