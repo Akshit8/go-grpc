@@ -58,6 +58,7 @@ apt install clang-format
 [grpc-io-go](https://grpc.io/docs/languages/go/quickstart/)<br>
 [protobuf-famous-types](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf)<br>
 [google-uuid](https://github.com/google/uuid)<br>
+[golang-copier](https://github.com/jinzhu/copier)<br>
 
 ## Author
 **Akshit Sadana <akshitsadana@gmail.com>**
