@@ -15,5 +15,6 @@ message SearchLaptopResponse { Laptop laptop = 1; }
 
 service LaptopService {
   rpc CreateLaptop(CreateLaptopRequest) returns (CreateLaptopResponse) {};
-  rpc SearchLaptop(SearchLaptopRequest) returns (SearchLaptopResponse) {};
+  rpc SearchLaptop(SearchLaptopRequest) returns (stream SearchLaptopResponse) {
+  };
 }
