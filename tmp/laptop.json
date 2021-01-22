@@ -1,0 +1,62 @@
+{
+  "id": "6e623d17-96d5-4a11-9600-dcec57ae4ea6",
+  "brand": "Lenevo",
+  "name": "Thinkpad P53",
+  "cpu": {
+    "brand": "AMD",
+    "name": "Ryzen 3 PRO 3200GE",
+    "numberCores": 8,
+    "numberThreads": 8,
+    "minGhz": 2.0144313261880513,
+    "maxGhz": 4.686693045226999
+  },
+  "ram": {
+    "value": "7",
+    "unit": 5
+  },
+  "gpus": [
+    {
+      "brand": "AMD",
+      "name": "RX 580",
+      "minGhz": 1.3864170959610602,
+      "maxGhz": 1.4043644223460994,
+      "memory": {
+        "value": "6",
+        "unit": 5
+      }
+    }
+  ],
+  "storages": [
+    {
+      "driver": 2,
+      "memory": {
+        "value": "296",
+        "unit": 5
+      }
+    },
+    {
+      "driver": 1,
+      "memory": {
+        "value": "2",
+        "unit": 6
+      }
+    }
+  ],
+  "screen": {
+    "sizeInch": 13.835426,
+    "resolution": {
+      "width": 4522,
+      "heigth": 2544
+    },
+    "panel": 1,
+    "multitouch": false
+  },
+  "keyboard": {
+    "layout": 0,
+    "backlit": false
+  },
+  "weightKg": 2.286202339655525,
+  "priceUsd": 2306.8918926747683,
+  "releaseYear": 2018,
+  "updatedAt": "2021-01-22T08:04:54.822552297Z"
+}

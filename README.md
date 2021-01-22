@@ -49,6 +49,7 @@ apt install clang-format
 - **gen** - generate go code from proto file
 - **clean** - clean all generated code
 - **run** - run package main
+- **test** - run all package test with coverage
 
 ## References
 [protobuf](https://github.com/protocolbuffers/protobuf)<br>

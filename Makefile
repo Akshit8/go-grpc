@@ -12,4 +12,7 @@ clean:
 run:
 	go run main.go
 
-.PHONY: git
+test:
+	go test -cover -race ./...
+
+.PHONY: git gen clean run test

@@ -9,10 +9,10 @@ import (
 // ProtobufToJSON converts protocol buffer message to json string
 func ProtobufToJSON(message proto.Message) (string, error) {
 	marshaler := jsonpb.Marshaler{
-		EnumsAsInts:  false,
+		EnumsAsInts:  true,
 		EmitDefaults: true,
 		Indent:       "  ",
-		OrigName:     true,
+		OrigName:     false,
 	}
 	return marshaler.MarshalToString(message)
 }
