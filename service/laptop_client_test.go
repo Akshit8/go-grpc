@@ -17,7 +17,7 @@ func TestClientCreateLaptop(t *testing.T) {
 	t.Parallel()
 
 	laptopStore := NewInMemoryLaptopStore()
-	laptopServer, serverAddress := startTestingLaptopServer(t, laptopStore)
+	serverAddress := startTestingLaptopServer(t, laptopStore, nil)
 	laptopClient := newTestLaptopClient(t, serverAddress)
 
 	laptop := sample.NewLaptop()
@@ -32,7 +32,7 @@ func TestClientCreateLaptop(t *testing.T) {
 	require.Equal(t, expectedID, res.Id)
 
 	// check that the laptop is saved to the store
-	other, err := laptopServer.Store.Find(res.Id)
+	other, err := laptopStore.Find(res.Id)
 	require.NoError(t, err)
 	require.NotNil(t, other)
 
@@ -88,7 +88,7 @@ func TestClientSearchLaptop(t *testing.T) {
 		require.NoError(t, err)
 	}
 
-	_, serverAddress := startTestingLaptopServer(t, laptopStore)
+	serverAddress := startTestingLaptopServer(t, laptopStore, nil)
 	laptopClient := newTestLaptopClient(t, serverAddress)
 
 	req := &pb.SearchLaptopRequest{Filter: filter}
@@ -110,8 +110,8 @@ func TestClientSearchLaptop(t *testing.T) {
 	require.Equal(t, len(expectedIDs), found)
 }
 
-func startTestingLaptopServer(t *testing.T, store *InMemoryLaptopStore) (*LaptopServer, string) {
-	laptopServer := NewLaptopServer(store)
+func startTestingLaptopServer(t *testing.T, laptopStore *InMemoryLaptopStore, imageStore *DiskImageStore) string {
+	laptopServer := NewLaptopServer(laptopStore, imageStore)
 
 	grpcServer := grpc.NewServer()
 	pb.RegisterLaptopServiceServer(grpcServer, laptopServer)
@@ -123,7 +123,7 @@ func startTestingLaptopServer(t *testing.T, store *InMemoryLaptopStore) (*Laptop
 	// hence running inside a different go routine
 	go grpcServer.Serve(listener)
 
-	return laptopServer, listener.Addr().String()
+	return listener.Addr().String()
 }
 
 func newTestLaptopClient(t *testing.T, serverAddress string) pb.LaptopServiceClient {
