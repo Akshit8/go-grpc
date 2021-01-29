@@ -14,6 +14,9 @@ import (
 	"google.golang.org/grpc/status"
 )
 
+// max 1 megabyte
+const maxImageSize = 1 << 20
+
 // LaptopServer is the server that provides laptop services
 type LaptopServer struct {
 	laptopStore LaptopStore
@@ -145,9 +148,33 @@ func (server *LaptopServer) UploadImage(stream pb.LaptopService_UploadImageServe
 		chunk := req.GetChunkData()
 		size := len(chunk)
 
-		log.Printf("recieved a chunk with size")
+		log.Printf("recieved a chunk with size: %d", size)
+
+		imageSize += size
+		if imageSize > maxImageSize {
+			return logError(status.Errorf(codes.InvalidArgument, "image is too large: %d > %d", imageSize, maxImageSize))
+		}
+
+		_, err = imageData.Write(chunk)
+		if err != nil {
+			return logError(status.Errorf(codes.Internal, "cannot write chunk data: %v", err))
+		}
+	}
+	imageID, err := server.imageStore.Save(laptopID, imageType, imageData)
+	if err != nil {
+		return logError(status.Errorf(codes.Internal, "cannot save file to the store %v", err))
 	}
 
+	res := &pb.UploadImageResponse{
+		Id: imageID,
+		Size: uint32(imageSize),
+	}
+
+	err = stream.SendAndClose(res)
+	if err != nil {
+		return logError(status.Errorf(codes.Unknown, "cannot send response %v", err))
+	}
+	log.Printf("successfully saved image with id: %s size: %d", imageID, imageSize)
 	return nil
 }
 

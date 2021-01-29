@@ -5,6 +5,7 @@ import (
 	"flag"
 	"io"
 	"log"
+	"os"
 	"time"
 
 	"github.com/Akshit8/go-grpc/pb"
@@ -14,8 +15,7 @@ import (
 	"google.golang.org/grpc/status"
 )
 
-func createLaptop(laptopClient pb.LaptopServiceClient) {
-	laptop := sample.NewLaptop()
+func createLaptop(laptopClient pb.LaptopServiceClient, laptop *pb.Laptop) {
 	// laptop.Id = ""
 	// laptop.Id = "dd3c66d6-746c-4086-9c63-789028f9a22c"
 	// laptop.Id = "invalid-uuid"
@@ -73,20 +73,13 @@ func searchLaptop(laptopClient pb.LaptopServiceClient, filter *pb.Filter) {
 	}
 }
 
-func main() {
-	serverAddress := flag.String("address", "", "the server address")
-	flag.Parse()
+func testCreateLaptop(laptopCient pb.LaptopServiceClient){
+	createLaptop(laptopCient, sample.NewLaptop())
+}
 
-	log.Printf("dial server %s", *serverAddress)
-
-	conn, err := grpc.Dial(*serverAddress, grpc.WithInsecure())
-	if err != nil {
-		log.Fatal("cannot dial server: ", err)
-	}
-
-	laptopCient := pb.NewLaptopServiceClient(conn)
+func testSearchLaptop(laptopCient pb.LaptopServiceClient) {
 	for i := 0; i < 10; i++ {
-		createLaptop(laptopCient)
+		createLaptop(laptopCient, sample.NewLaptop())
 	}
 
 	filter := &pb.Filter{
@@ -100,4 +93,38 @@ func main() {
 	}
 
 	searchLaptop(laptopCient, filter)
+}
+
+func uploadImage(laptopClient pb.LaptopServiceClient, laptopID string, imagePath string) {
+	file, err := os.Open(imagePath)
+	if err != nil {
+		log.Fatal("cannot open file: ", err)
+	}
+	defer file.Close()
+
+	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
+	defer cancel()
+
+	stream
+
+}
+
+func testUploadImage(laptopClient pb.LaptopServiceClient) {
+	laptop := sample.NewLaptop()
+	createLaptop(laptopClient, laptop)
+	uploadImage(laptopClient, laptop.GetId(), "tmp/laptop.png")
+}
+
+func main() {
+	serverAddress := flag.String("address", "", "the server address")
+	flag.Parse()
+
+	log.Printf("dial server %s", *serverAddress)
+
+	conn, err := grpc.Dial(*serverAddress, grpc.WithInsecure())
+	if err != nil {
+		log.Fatal("cannot dial server: ", err)
+	}
+
+	laptopCient := pb.NewLaptopServiceClient(conn)
 }
